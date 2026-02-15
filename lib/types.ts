@@ -8,6 +8,13 @@ export interface Agent {
   model: string;
   createdAt: string;
   lastActive: string;
+  personality?: string;
+  focusAreas?: string[];
+  targets?: string[];
+  controlledTools?: string[];
+  managedAgents?: string[];
+  instructions?: string;
+  systemPrompt?: string;
 }
 
 export interface Message {
