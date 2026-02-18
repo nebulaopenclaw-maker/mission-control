@@ -1,26 +1,33 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { Providers } from './providers';
+import { Nav } from '@/components/nav';
 
 export const metadata: Metadata = {
-  title: 'Mission Control - Nebula Agent Management',
-  description: 'Multi-agent management dashboard for OpenClaw',
+  title: 'OpenClaw — Mission Control',
+  description: 'Command center for the OpenClaw autonomous AI agent system.',
+  icons: { icon: '/favicon.ico' },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#06080F',
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body className="bg-dark-bg text-white">
-        <div className="container-main">
-          {children}
-        </div>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head />
+      <body className="bg-base text-text-primary antialiased min-h-screen">
+        <Providers>
+          <div className="flex flex-col min-h-screen">
+            <Nav />
+            <main className="flex-1 pt-[46px]">
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
